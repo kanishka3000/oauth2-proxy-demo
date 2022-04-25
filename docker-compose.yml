@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  proxy:
+    image: quay.io/oauth2-proxy/oauth2-proxy:latest
+    ports:
+      - 4180:4180
+    environment:
+      - OAUTH2_PROXY_CLIENT_ID=784769711130-uvnh5m5d353f4r13bar43j1gfqtt59o1.apps.googleusercontent.com
+      - OAUTH2_PROXY_CLIENT_SECRET=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
+      - OAUTH2_PROXY_UPSTREAMS=http://server:8080
+      - OAUTH2_PROXY_REDIRECT_URL=http://localhost:4180/oauth2/callback
+      - OAUTH2_PROXY_HTTP_ADDRESS=0.0.0.0:4180
+      - OAUTH2_PROXY_REVERSE_PROXY=false
+      - OAUTH2_PROXY_EMAIL_DOMAINS=*
+      - OAUTH2_PROXY_COOKIE_SECRET=zHXZUFdHSefsHKc1oTCpaAtZCVyiHfSfpd_BjH2H3TM=
+      - OAUTH2_PROXY_PASS_AUTHORIZATION_HEADER=true
+  server:
+    build:
+      context: ./infodisplay
